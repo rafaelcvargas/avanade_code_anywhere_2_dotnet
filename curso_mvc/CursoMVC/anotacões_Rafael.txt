@@ -1,3 +1,5 @@
+--Curso MVC
+
 No Package Manager Console rode os comandos abaixo:
 
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
@@ -19,3 +21,14 @@ Depois de criar o model de Produtos:
 
 Add-Migration TabelaProduto
 Update-DataBase
+
+--Curso API
+Criar o projeto App Asp.Net Core Web API
+Instalar pacote Swagger - Swashbuckle.AspNetCore
+Na startup:
+	add na ConfigureServices :
+		services.AddSwaggerGen(c => { c.SwaggerDoc(name: "v1", new OpenApiInfo { Title = "Curso API", Version = "v1" }); });
+	no metodo Configure add os middleware do swagger:
+			app.UseSwagger();
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "Curso API"); });
+		
