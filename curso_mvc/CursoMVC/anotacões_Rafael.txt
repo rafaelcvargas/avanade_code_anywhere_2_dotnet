@@ -1,0 +1,21 @@
+No Package Manager Console rode os comandos abaixo:
+
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Tools
+
+Depois de criado o Context, Build e rode o comando abaixo para criar o migration e coloque o nome como InitialCreate:
+Add-Migration InitialCreate
+
+Ele vai criar a pasta Migrations com o historico e um Snapshot.
+
+Rode o comando o Update-DataBase para criar o banco de dados:
+Update-DataBase
+
+Rode o comando:
+
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 3.0.0
+
+Depois de criar o model de Produtos:
+
+Add-Migration TabelaProduto
+Update-DataBase
