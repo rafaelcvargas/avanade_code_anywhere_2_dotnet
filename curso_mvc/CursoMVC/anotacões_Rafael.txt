@@ -32,3 +32,14 @@ Na startup:
 			app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "Curso API"); });
 		
+
+--Projeto de teste
+Criar um projeto do tipo xUnit Test Project - .NET Core
+coloque as referencias os dois projetos o do MVC e o de API
+Instale os nuggets da mesma versao: 
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Tools
+Moq - by Daniel Cazzulino, kzu
+
+lembre-se de no context deixar o metodo do context virtual
+ex: public virtual DbSet<Categoria> Categorias { get; set; }
