@@ -43,3 +43,10 @@ Moq - by Daniel Cazzulino, kzu
 
 lembre-se de no context deixar o metodo do context virtual
 ex: public virtual DbSet<Categoria> Categorias { get; set; }
+
+
+como a versão usada no projeto é dot net core 3.0 tem que instalar o Entity F, ou seja sendo 3.0 ou maior tem que instalar porque a partir do 3 ela não vem mais junto no sdk.
+abre o cmd no modo adimistrador, e onde fica a pasta Migrations voce da um cd
+cd C:\git\code_anywhere\curso_mvc\CursoMVC\CursoMVC\Migrations 
+rode o comando abaixo:
+dotnet tool install --global dotnet-ef --version 3.0.0
