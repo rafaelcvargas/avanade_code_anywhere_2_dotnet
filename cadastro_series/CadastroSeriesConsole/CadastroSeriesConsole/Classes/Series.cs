@@ -64,6 +64,11 @@ namespace CadastroSeriesConsole
             this.Excluido = true;
         }
 
+        public bool RetornaExcluido()
+        {
+            return this.Excluido;
+        }
+
         #endregion
     }
 }
