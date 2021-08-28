@@ -12,7 +12,7 @@ namespace CadastroSeriesConsole
             {
                 string opcaoUsuario = ObterOpcaoUsuario();
 
-                while (opcaoUsuario.ToUpper() != "x")
+                while (opcaoUsuario.ToUpper() != "X")
                 {
                     switch (opcaoUsuario.ToUpper())
                     {
@@ -34,18 +34,14 @@ namespace CadastroSeriesConsole
                         case "C":
                             Console.Clear();
                             break;
-                        case "X":
-                            break;
-
                         default:
                             throw new ArgumentOutOfRangeException();
                             break;
                     }
-                    Console.WriteLine("Obrigado por utilizar nossos serviços");
-                    Console.ReadLine();
+                    opcaoUsuario = ObterOpcaoUsuario();
                 }
-
-                
+                Console.WriteLine("Obrigado por utilizar nossos serviços");
+                Console.ReadLine();
 
             }
             catch (Exception ex)
@@ -57,7 +53,7 @@ namespace CadastroSeriesConsole
 
         private static string ObterOpcaoUsuario()
         {
-            Console.WriteLine("");
+            Console.WriteLine();
             Console.WriteLine("Vargas Séries a seu dispor!!!");
             Console.WriteLine("Informe a opção desejada:");
 
@@ -78,19 +74,19 @@ namespace CadastroSeriesConsole
 
         private static void ListarSeries()
         {
-            Console.WriteLine("Listar series");
+            Console.WriteLine("Listar séries");
 
             var listaSerie = serieRepositorio.Lista();
 
             if (listaSerie.Count == 0)
             {
-                Console.WriteLine("Nenhuma serie cadastrada.");
+                Console.WriteLine("Nenhuma série cadastrada.");
             }
 
             foreach (var serie in listaSerie)
             {
                 var excluido = serie.RetornaExcluido();
-                Console.WriteLine("ID {0}: - {1}{2}", serie.RetornaId(), serie.RetornaTitulo(), (excluido ? " - Excluido" : string.Empty));
+                Console.WriteLine("ID {0}: - {1}{2}", serie.RetornaId(), serie.RetornaTitulo(), (excluido ? " - Excluído" : string.Empty));
 
             }
         }
@@ -120,9 +116,12 @@ namespace CadastroSeriesConsole
                                         genero: (Genero)entradaGenero,
                                         titulo: entradaTitulo,
                                         ano: entradaAno,
-                                        descricao: entradaDescricao);
+                                        descricao: entradaDescricao
+                                       );
 
             serieRepositorio.Insere(novaSerie);
+            Console.WriteLine("Série inserida com sucesso!");
+
         }
 
         private static void AtualizarSerie()
@@ -135,10 +134,10 @@ namespace CadastroSeriesConsole
                 Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
             }
 
-            Console.Write("Digite o genero entre as opções acima: ");
+            Console.WriteLine("Digite o genero entre as opções acima: ");
             int entradaGenero = int.Parse(Console.ReadLine());
 
-            Console.Write("Digite o Título da Série: ");
+            Console.WriteLine("Digite o Título da Série: ");
             string entradaTitulo = Console.ReadLine();
 
             Console.WriteLine("Digite o Ano de Inicio da Série: ");
@@ -154,21 +153,21 @@ namespace CadastroSeriesConsole
                                         descricao: entradaDescricao);
 
             serieRepositorio.Atualiza(indiceSerie, atualizaSerie);
-            Console.Write("Série atualizada com sucesso!");
+            Console.WriteLine("Série atualizada com sucesso!");
         }
 
         private static void ExcluirSerie()
         {
-            Console.Write("Digite o id da série: ");
+            Console.WriteLine("Digite o id da série: ");
             int indiceSerie = int.Parse(Console.ReadLine());
 
             serieRepositorio.Exclui(indiceSerie);
-            Console.Write("Série excluida com sucesso!");
+            Console.WriteLine("Série excluida com sucesso!");
         }
 
         private static void VisualizarSerie()
         {
-            Console.Write("Digite o id da série: ");
+            Console.WriteLine("Digite o id da série: ");
             int indiceSerie = int.Parse(Console.ReadLine());
 
             var serie = serieRepositorio.RetornaPorId(indiceSerie);

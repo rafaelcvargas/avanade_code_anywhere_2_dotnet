@@ -4,6 +4,9 @@ using System.Text;
 
 namespace CadastroSeriesConsole
 {
+    /// <summary>
+    /// Genero de séries
+    /// </summary>
     public enum Genero
     {
         Acao = 1,
