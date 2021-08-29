@@ -1,0 +1,8 @@
+Melhorias:
+1 - Se o indice ja estiver sido deletado, ao pedir para deletar ele manda uma mensagem avisando.
+2 - N?o deixar atualizar serie j? excluida, verifica se foi excluida e manda mensagem
+3 - Ajustado ToString de serie para retornar no campo Excluido sim ou n?o
+4 - Criado o metodo ValidaIdSerie para ser usado para evitar usar um indice incorreto
+5 - implementado valida??o se o ano ? valido.
+6 - implementado valida??o se o Genero digitado ? valido.
+

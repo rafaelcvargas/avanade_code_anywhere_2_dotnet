@@ -3,6 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Description>Projeto feito acompanhando o curso do BootCamp Avanade CodeAnywhere .NET, nele foi implementado melhorias descritas no arquivo melhorias_rafa.txt</Description>
+    <Copyright>Rafael Caldeira Vargas</Copyright>
   </PropertyGroup>
 
 </Project>

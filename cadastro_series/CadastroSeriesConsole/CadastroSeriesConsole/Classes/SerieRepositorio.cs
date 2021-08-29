@@ -65,7 +65,14 @@ namespace CadastroSeriesConsole
         /// <returns>Serie</returns>
         public Serie RetornaPorId(int id)
         {
-            return listaSerie[id];
+            if(listaSerie.FindIndex(s => s.Id == id) != -1)
+            {
+                return listaSerie[id];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         #endregion

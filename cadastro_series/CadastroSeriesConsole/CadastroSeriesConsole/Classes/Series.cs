@@ -70,7 +70,7 @@ namespace CadastroSeriesConsole
             retorno.AppendFormat("Titulo: {0}", this.Titulo).AppendLine();
             retorno.AppendFormat("Descrição: {0}", this.Descricao).AppendLine();
             retorno.AppendFormat("Ano: {0}", this.Ano).AppendLine();
-            retorno.AppendFormat("Excluido: {0}", this.Excluido).AppendLine();
+            retorno.AppendFormat("Excluído: {0}", this.Excluido ? "Sim":"Não").AppendLine();
 
             return retorno.ToString();
         }
