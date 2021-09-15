@@ -1,4 +1,5 @@
-﻿using ApiCatalogoJogosRafa.InputModel;
+﻿using ApiCatalogoJogosRafa.Exceptions;
+using ApiCatalogoJogosRafa.InputModel;
 using ApiCatalogoJogosRafa.Services;
 using ApiCatalogoJogosRafa.ViewModel;
 using Microsoft.AspNetCore.Http;
@@ -54,7 +55,7 @@ namespace ApiCatalogoJogosRafa.Controllers.V1
 
                 return Ok(jogo);
             }
-            catch (Exception ex)
+            catch (JogoJaCadastradoException ex)
             {
                 return UnprocessableEntity("Já existe um jogo com este nome para esta produtora");
             }
@@ -69,7 +70,7 @@ namespace ApiCatalogoJogosRafa.Controllers.V1
 
                 return Ok();
             }
-            catch (Exception ex)
+            catch (JogoNaoCadastradoException ex)
             {
                 return NotFound("Não existe este jogo");
             }
@@ -84,7 +85,7 @@ namespace ApiCatalogoJogosRafa.Controllers.V1
 
                 return Ok();
             }
-            catch (Exception ex)
+            catch (JogoNaoCadastradoException ex)
             {
                 return NotFound("Não existe este jogo");
             }
@@ -99,7 +100,7 @@ namespace ApiCatalogoJogosRafa.Controllers.V1
 
                 return Ok();
             }
-            catch (Exception ex)
+            catch (JogoNaoCadastradoException ex)
             {
                 return NotFound("Não existe este jogo");
             }
