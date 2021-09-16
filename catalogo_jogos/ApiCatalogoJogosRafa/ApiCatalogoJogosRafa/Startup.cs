@@ -1,3 +1,5 @@
+using ApiCatalogoJogosRafa.Controllers.V1;
+using ApiCatalogoJogosRafa.Middleware;
 using ApiCatalogoJogosRafa.Repositories;
 using ApiCatalogoJogosRafa.Services;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +13,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ApiCatalogoJogosRafa
@@ -32,13 +36,25 @@ namespace ApiCatalogoJogosRafa
             //Container especifica qual objeto você vai ter no construtor e para aquele objeto qual instancia você deve dar para ele.
             //ou seja toda vez que ele encontrar um IJogoService ele tem que me retornar um JogoService
             services.AddScoped<IJogoService, JogoService>();
-            services.AddScoped<IJogoRepository, JogoRepository>();
+            //services.AddScoped<IJogoRepository, JogoRepository>(); //usava o repository em memoria para testes
+            services.AddScoped<IJogoRepository, JogoSqlServerRepository>();
+            #endregion
+
+            #region CicloDeVida
+
+            services.AddSingleton<IExemploSingleton, ExemploCicloDeVida>();
+            services.AddScoped<IExemploScoped, ExemploCicloDeVida>();
+            services.AddTransient<IExemploTransient, ExemploCicloDeVida>();
+
             #endregion
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiCatalogoJogosRafa", Version = "v1" });
+                var basePath = AppDomain.CurrentDomain.BaseDirectory;
+                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                c.IncludeXmlComments(Path.Combine(basePath, fileName));
             });
         }
 
@@ -48,11 +64,12 @@ namespace ApiCatalogoJogosRafa
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiCatalogoJogosRafa v1"));
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiCatalogoJogosRafa v1"));
+            //registra o Middleware, plugando ele no pipeline.
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
 
