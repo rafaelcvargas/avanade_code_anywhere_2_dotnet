@@ -1,3 +1,5 @@
+using ApiCatalogoJogosRafa.Repositories;
+using ApiCatalogoJogosRafa.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,12 @@ namespace ApiCatalogoJogosRafa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Container
+            //Container especifica qual objeto você vai ter no construtor e para aquele objeto qual instancia você deve dar para ele.
+            //ou seja toda vez que ele encontrar um IJogoService ele tem que me retornar um JogoService
+            services.AddScoped<IJogoService, JogoService>();
+            services.AddScoped<IJogoRepository, JogoRepository>();
+            #endregion
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -40,7 +48,7 @@ namespace ApiCatalogoJogosRafa
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                
+
             }
 
             app.UseSwagger();
